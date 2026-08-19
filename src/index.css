@@ -36,7 +36,7 @@ body {
 
 /* Page layout */
 div#content {
-    gap: 10px;
+    gap: 20px;
     display: flex;
 
     /* Alignment */
@@ -44,10 +44,6 @@ div#content {
     height: 100%;
 
     /* Internal layout */
-    & > aside {
-        width: 20%;
-    }
-
     & > main {
         flex: 1;
     }
@@ -101,7 +97,7 @@ summary {
 }
 
 .question {
-    border: 1px solid #fff;
+    border: 1px solid #797979;
     border-radius: 4px;
     padding: 4px;
 }

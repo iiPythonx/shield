@@ -45,7 +45,7 @@ function Section({ form, section }: { form: Form, section: Section }) {
 export function Assessment({ form }: { form: Form }) {
     return <>
         <aside>
-            <img src = {Icon} />
+            <img src = {Icon} style = {{ width: "300px" }} />
         </aside>
         <hr />
         <main className = {"flex"}>
