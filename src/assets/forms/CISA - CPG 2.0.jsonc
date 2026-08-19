@@ -10,7 +10,7 @@
         {
             "id": 1,
             "colors": {
-                "bg": "green",
+                "bg": "#008200",
                 "fg": "#fff"
             },
             "text": "Implemented"
@@ -26,7 +26,7 @@
         {
             "id": 3,
             "colors": {
-                "bg": "yellow",
+                "bg": "#ffff00",
                 "fg": "#000"
             },
             "text": "Scoped"
@@ -34,7 +34,7 @@
         {
             "id": 4,
             "colors": {
-                "bg": "red",
+                "bg": "#c71111",
                 "fg": "#fff"
             },
             "text": "Not Implemented"
