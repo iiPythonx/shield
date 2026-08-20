@@ -1,6 +1,7 @@
 import { render } from "preact";
 import { useRef, useState } from "preact/hooks";
 import { parse } from "jsonc-parser";
+import { version } from "../package.json";
 
 import { Modal } from "./components/modal";
 import { Assessment } from "./assessment";
@@ -40,11 +41,11 @@ export function App() {
                 <button onClick = {continueWithSelectedType}>Continue</button>
             </Modal>
         }
-        <footer onClick = {() => setCopyrightOpen(true)}>&copy; 2026</footer>
+        <footer onClick = {() => setCopyrightOpen(true)}>v{version} &copy; 2026</footer>
         {copyrightOpen && <Modal title = "Copyright & Credits">
             <p>Copyright &copy; 2026 Benjamin O'Brien</p>
-            <p>Designed by the Mississippi State University Cybersecurity Assessments Program</p>
-            <p>Made possible by <a href = "https://vite.dev">vite</a> and <a href = "https://preactjs.com">preact</a></p>
+            <p>Made possible by <a href = "https://vite.dev">vite</a>, <a href = "https://preactjs.com">preact</a>, and many others.</p>
+            <p>Source code available <a href = "https://github.com/iiPythonx/shield">on GitHub</a>.</p>
             <button onClick = {() => setCopyrightOpen(false)}>Close</button>
         </Modal>}
     </>;
