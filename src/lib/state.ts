@@ -6,7 +6,7 @@ export interface AnswerEntry {
     notes:  string;
 }
 
-interface AppState {
+export interface AppState {
     selectedForm:   Form | null;
     currentAnswers: Record<string, AnswerEntry>;
     company:        string;

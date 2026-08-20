@@ -5,6 +5,7 @@ import { appState, clearState } from "../lib/state";
 
 import MSU from "../assets/icons/msstate.svg";
 import "./navbar.css";
+import { generateReport } from "../lib/pdf";
 
 function Section({ name, children }: { name: string, children: ReactNode }) {
     return <li class = "navbar-section">
@@ -34,7 +35,7 @@ export function Navbar({ currentItem, setCurrentItem }: { currentItem: string, s
         </ul>
         <div style = {{ flex: "1" }}></div>
         <button onClick = {() => console.log(appState.value.currentAnswers)}>Export (JSON)</button>
-        <button>Export (PDF)</button>
+        <button onClick = {() => generateReport(appState.value)}>Export (PDF)</button>
         <button onClick = {() => setConfirmModalOpen(true)}>Clear Assessment</button>
         {confirmModalOpen && <Modal title = {"Confirm Assessment Clearing"}>
             <p>Are you sure you want to clear the assessment? <b>This cannot be undone.</b></p>

@@ -3,7 +3,7 @@ import { appState } from "../../lib/state"
 export function Introduction() {
     return <>
         <h2>Introduction</h2>
-        <h3>About This Assessment</h3>currentForm
+        <h3>About This Assessment</h3>
         <p>You are currently filling out a {appState.value.selectedForm?.name} form made by {appState.value.selectedForm?.source}.</p>
         <h3>How to Use</h3>
         <p>This assessment is split into three separate components:</p>

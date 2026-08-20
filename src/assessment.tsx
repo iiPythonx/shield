@@ -50,7 +50,7 @@ export function Assessment() {
                 ) : currentItem === "prelim" ? (
                     <Preliminary />
                 ) : (
-                    <QuestionPage question={questions.get(currentItem)} />
+                    <QuestionPage question = {questions.get(currentItem)} />
                 )}
                 <h3>Progress</h3>
                 <div style = {{ display: "flex", gap: "10px" }}>

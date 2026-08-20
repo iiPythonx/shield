@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@preact/signals": "^2.11.1",
+    "jspdf": "^4.2.1",
     "preact": "^10.29.7"
   },
   "devDependencies": {
