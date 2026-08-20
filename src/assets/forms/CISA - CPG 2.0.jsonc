@@ -18,7 +18,7 @@
         {
             "id": 2,
             "colors": {
-                "bg": "#5dacff",
+                "bg": "#1e60a6",
                 "fg": "#ffffff"
             },
             "text": "In Progress"
@@ -26,7 +26,7 @@
         {
             "id": 3,
             "colors": {
-                "bg": "#ffff00",
+                "bg": "#c2c200",
                 "fg": "#000000"
             },
             "text": "Scoped"

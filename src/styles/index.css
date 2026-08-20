@@ -3,6 +3,7 @@
     --background: #121212;
     --foreground: #ffffff;
     --maroon: #5d1725;
+    --border: #505050;
 }
 
 /* Fonts */
@@ -29,6 +30,10 @@
     color: var(--foreground);
     margin: 0px;
     font-family: "Google Sans", sans-serif;
+}
+
+hr {
+    border-color: var(--border);
 }
 
 html {
@@ -79,7 +84,7 @@ button {
 
 select {
     border: none;
-    border-bottom: 1px solid var(--foreground);
+    border-bottom: 1px solid var(--border);
     background: none;
 
     &.invalid {

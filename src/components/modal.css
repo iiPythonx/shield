@@ -18,7 +18,7 @@
     width: 440px;
     background: var(--background);
     border-radius: 12px;
-    border: 1px solid var(--foreground);
+    border: 1px solid var(--border);
 
     & > button {
         align-self: flex-end;
