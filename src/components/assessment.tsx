@@ -52,8 +52,8 @@ function Question({
     onNotesChange: (notes: string) => void
 }) {
     return <div className = {"flex question"}>
-        <details>
-            <summary className = {"section-title"}>{question.id}: {question.name}</summary>
+        <details name = "accordion">
+            <summary className = {"section-title"} style = {{ color: form.responses.find((r) => r.id === answer.response)?.colors.bg }}>{question.id}: {question.name}</summary>
             <div className = {"flex"}>
                 <div style = {{ display: "flex", gap: "10px" }}>
                     {Object.entries(question.attributes).map(([name, value]) => <span>{name}: <b>{value}</b></span>)}
