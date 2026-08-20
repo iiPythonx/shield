@@ -34,7 +34,16 @@ const drawSection = (form: Form, answers: Record<string, AnswerEntry>, doc: jsPD
 
     // Fill out questions
     for (const question of section.questions) {
-        const boxHeight = 23;
+        const data = answers[question.id] || { answer: null, notes: "" };
+
+        const boxWidth = pageWidth - x * 2;
+
+        // Grab notes
+        const noteText = data.notes.trim() ? data.notes.trim() : "None.";
+        const noteLines = doc.splitTextToSize(noteText, boxWidth - 6);
+
+        // Recalculate height
+        const boxHeight = 25 + (3.5 * noteLines.length);
 
         // Box
         doc.setFillColor("#fff");
@@ -57,7 +66,7 @@ const drawSection = (form: Form, answers: Record<string, AnswerEntry>, doc: jsPD
         const buttonY = y + 10;
 
         for (const response of form.responses) {
-            if (response.id === (answers[question.id] || { answer: null, notes: "" }).answer) {
+            if (response.id === data.answer) {
                 doc.setFillColor(response.colors.bg);
                 doc.setDrawColor(response.colors.bg);
                 doc.setTextColor(response.colors.fg)
@@ -76,16 +85,29 @@ const drawSection = (form: Form, answers: Record<string, AnswerEntry>, doc: jsPD
             buttonX += width + 3;
         }
 
+        // Render notes
+        const notesY = y + 22;
+
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(8);
+        doc.setTextColor("#000");
+
+        doc.text("Notes:", x + 2, notesY);
+
+        doc.setFont("helvetica", "normal");
+        doc.text(noteLines, x + 2, notesY + 4);
+        
+        // New page
         y += boxHeight + 2;
 
-        // New page
-        if (y > 270) {
+        const pageHeight = doc.internal.pageSize.getHeight();
+        if (y + boxHeight > pageHeight - 12) {
             doc.addPage();
-            y = 20;
+            y = 15;
         }
     };
 
-    return y;
+    return y + 5;
 }
 
 export const generateReport = (appState: AppState) => {
@@ -149,7 +171,7 @@ export const generateReport = (appState: AppState) => {
     // Next page and then start writing sections
     doc.addPage();
 
-    let y = 20;
+    let y = 15;
     for (const section of appState.selectedForm.sections || []) {
         y = drawSection(
             appState.selectedForm,
