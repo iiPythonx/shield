@@ -104,6 +104,11 @@ footer {
     position: absolute;
 }
 
+textarea, input {
+    color: var(--background);
+    outline: none;
+}
+
 /* Utilities */
 .flex {
     display: flex;

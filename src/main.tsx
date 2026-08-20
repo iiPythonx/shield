@@ -3,7 +3,7 @@ import { useRef, useState } from "preact/hooks";
 import { parse } from "jsonc-parser";
 
 import { Modal } from "./components/modal";
-import { Assessment } from "./components/assessment";
+import { Assessment } from "./assessment";
 import type { Form } from "./types";
 
 import "./index.css";

@@ -1,17 +1,11 @@
 import { useMemo, useState } from "preact/hooks";
 
-import { Navbar } from "./navbar";
-import type { Question } from "../types";
-import { QuestionPage } from "./question";
-import { useForm } from "../lib/state";
-
-function Introduction() {
-    return <p>Introduction!</p>;
-}
-
-function Preliminary() {
-    return <p>Preliminary!</p>;
-}
+import type { Question } from "./types";
+import { useForm } from "./lib/state";
+import { Navbar } from "./components/navbar";
+import { QuestionPage } from "./components/pages/question";
+import { Introduction } from "./components/pages/introduction";
+import { Preliminary } from "./components/pages/preliminary";
 
 export function Assessment() {
     const [currentForm] = useForm();

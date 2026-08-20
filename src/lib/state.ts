@@ -40,3 +40,9 @@ export function useAnswers() {
         setNote,
     };
 }
+
+export const companySignal = signal<string>("");
+export const locationSignal = signal<string>("");
+export const pocNameSignal = signal<string>("");
+export const pocEmailSignal = signal<string>("");
+export const assessorsSignal = signal<string[]>([]);

@@ -1,5 +1,5 @@
-import { useForm, useAnswers } from "../lib/state";
-import type { Question } from "../types";
+import { useForm, useAnswers } from "../../lib/state";
+import type { Question } from "../../types";
 
 function ResponseSelector({ question, answer, setAnswer }: { question: string, answer: number | null, setAnswer: (q: string, a: number | null) => void }) {
     const [form] = useForm();
@@ -47,7 +47,6 @@ export function QuestionPage({ question }: { question: Question | undefined }) {
             <ResponseSelector question = {question.id} answer = {data.answer} setAnswer = {setAnswer} />
             <h3>Notes</h3>
             <textarea
-                style = {{ color: "#000", outline: "none" }}
                 onInput = {(e) => setNote(question.id, e.currentTarget.value)}
                 value = {data.notes}
             />
