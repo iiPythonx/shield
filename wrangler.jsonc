@@ -1,0 +1,12 @@
+{
+    "$schema": "node_modules/wrangler/config-schema.json",
+    "name": "shield",
+    "compatibility_date": "2026-08-15",
+    "workers_dev": false,
+    "observability": {
+        "enabled": true
+    },
+    "assets": {
+        "not_found_handling": "single-page-application"
+    }
+  }
