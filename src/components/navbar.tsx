@@ -22,7 +22,7 @@ export function Navbar({ currentItem, setCurrentItem }: { currentItem: string, s
     }
 
     return <aside className = {"flex"}>
-        <img src = {MSU} />
+        <img src = {MSU} style = {{ width: "300px", alignSelf: "center" }} />
         <hr />
         <ul>
             {Item("intro", "Introduction")}

@@ -44,7 +44,7 @@ export function Assessment() {
                 <h2>{appState.value.selectedForm.source} - {appState.value.selectedForm.name}</h2>
             </header>
             <hr />
-            <div className = {"flex scroll"}>
+            <div className = {"flex scroll"} style = {{ flex: "1" }}>
                 {currentItem === "intro" ? (
                     <Introduction />
                 ) : currentItem === "prelim" ? (

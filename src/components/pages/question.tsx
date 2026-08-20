@@ -31,39 +31,39 @@ export function QuestionPage({ question }: { question: Question | undefined }) {
     const data = appState.value.currentAnswers[question.id] || { answer: null, notes: "" };
 
     // Component
-    return (
-        <div className = {"flex"}>
-            <h2>{question.id}: {question.name}</h2>
+    return <>
+        <h2>{question.id}: {question.name}</h2>
+        <div className = {"flex"} style = {{ overflowY: "scroll", flex: "1" }}>
             {Object.entries(question.sections).map(([name, details]) => <>
                 <h3>{name}</h3>
                 <ul>
                     {details.map(d => <li>{d}</li>)}
                 </ul>
             </>)}
-            <hr />
-            <h3>Assessment</h3>
-            <ResponseSelector question = {question.id} answer = {data.answer} setAnswer = {(a: number | null) => {
+        </div>
+        <hr />
+        <h3>Assessment</h3>
+        <ResponseSelector question = {question.id} answer = {data.answer} setAnswer = {(a: number | null) => {
+            appState.value = {
+                ...appState.value,
+                currentAnswers: {
+                    ...appState.value.currentAnswers,
+                    [question.id]: { ...data, answer: a }
+                }
+            }
+        }} />
+        <h3>Notes</h3>
+        <textarea
+            onInput = {(e) => {
                 appState.value = {
                     ...appState.value,
                     currentAnswers: {
                         ...appState.value.currentAnswers,
-                        [question.id]: { ...data, answer: a }
+                        [question.id]: { ...data, notes: e.currentTarget.value }
                     }
                 }
-            }} />
-            <h3>Notes</h3>
-            <textarea
-                onInput = {(e) => {
-                    appState.value = {
-                        ...appState.value,
-                        currentAnswers: {
-                            ...appState.value.currentAnswers,
-                            [question.id]: { ...data, notes: e.currentTarget.value }
-                        }
-                    }
-                }}
-                value = {data.notes}
-            />
-        </div>
-    );
+            }}
+            value = {data.notes}
+        />
+    </>;
 }

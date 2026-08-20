@@ -11,7 +11,7 @@
             "id": 1,
             "colors": {
                 "bg": "#008200",
-                "fg": "#fff"
+                "fg": "#ffffff"
             },
             "text": "Implemented"
         },
@@ -19,7 +19,7 @@
             "id": 2,
             "colors": {
                 "bg": "#5dacff",
-                "fg": "#fff"
+                "fg": "#ffffff"
             },
             "text": "In Progress"
         },
@@ -27,15 +27,15 @@
             "id": 3,
             "colors": {
                 "bg": "#ffff00",
-                "fg": "#000"
+                "fg": "#000000"
             },
             "text": "Scoped"
         },
         {
             "id": 4,
             "colors": {
-                "bg": "#c71111",
-                "fg": "#fff"
+                "bg": "#a23535",
+                "fg": "#ffffff"
             },
             "text": "Not Implemented"
         }

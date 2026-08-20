@@ -52,7 +52,7 @@ div#content {
 
     /* Internal layout */
     & > main {
-        flex: 1;
+        width: 50%;
     }
 }
 
@@ -107,6 +107,7 @@ footer {
 textarea, input {
     color: var(--background);
     outline: none;
+    resize: none;
 }
 
 /* Utilities */
