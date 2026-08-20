@@ -1,6 +1,6 @@
 import type { ReactNode } from "preact/compat";
 
-import { useForm } from "../lib/state";
+import { useAnswers, useForm } from "../lib/state";
 
 import MSU from "../assets/icons/msstate.svg";
 import "./navbar.css";
@@ -13,8 +13,10 @@ function Section({ name, children }: { name: string, children: ReactNode }) {
 }
 
 export function Navbar({ currentItem, setCurrentItem }: { currentItem: string, setCurrentItem: (item: string) => void }) {
-    const [currentForm,] = useForm();
-    if (!currentForm) return;
+    const [currentForm] = useForm();
+    if (!currentForm) return null;
+
+    const { answers } = useAnswers();
 
     const Item = (id: string, text: string) => {
         return <li onClick = {() => setCurrentItem(id)} className = {currentItem === id ? "selected" : ""}>{text}</li>;
@@ -33,7 +35,7 @@ export function Navbar({ currentItem, setCurrentItem }: { currentItem: string, s
             ))}
         </ul>
         <div style = {{ flex: "1" }}></div>
-        <button>Export (JSON)</button>
+        <button onClick = {() => console.log(answers)}>Export (JSON)</button>
         <button>Export (PDF)</button>
     </aside>;
 }

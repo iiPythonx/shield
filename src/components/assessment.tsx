@@ -1,4 +1,4 @@
-import { useState } from "preact/hooks";
+import { useMemo, useState } from "preact/hooks";
 
 import { Navbar } from "./navbar";
 import type { Question } from "../types";
@@ -14,33 +14,34 @@ function Preliminary() {
 }
 
 export function Assessment() {
-    const [currentForm,] = useForm();
-    if (!currentForm) return;
-    
+    const [currentForm] = useForm();
     const [currentItem, setCurrentItem] = useState<string>("intro");
     
-    const questions = new Map<string, Question>();
-    for (const section of currentForm.sections) {
-        for (const question of section.questions) questions.set(question.id, question);
-    }
+    // Process questions
+    const { questions, steps } = useMemo(() => {
+        if (!currentForm) return { questions: new Map<string, Question>(), steps: ["intro", "prelim"] };
 
-    const questionKeys = [...questions.keys()];
+        const map = new Map<string, Question>();
+        for (const section of currentForm.sections) {
+            for (const question of section.questions) map.set(question.id, question);
+        }
 
+        return {
+            questions: map,
+            steps: ["intro", "prelim", ...map.keys()],
+        };
+    }, [currentForm]);
+
+    if (!currentForm) return null;
+
+    // Handle stepping
+    const currentIndex = steps.indexOf(currentItem);
     const next = () => {
-        if (currentItem === "intro") return setCurrentItem("prelim");
-        if (currentItem === "prelim") return setCurrentItem(questionKeys[0]);
-        setCurrentItem(questionKeys[questionKeys.indexOf(currentItem) + 1]);
-    }
-
+        if (currentIndex < steps.length - 1) setCurrentItem(steps[currentIndex + 1]);
+    };
     const prev = () => {
-        if (currentItem === "intro") return;
-        if (currentItem === "prelim") return setCurrentItem("intro");
-
-        const index = questionKeys.indexOf(currentItem);
-        if (index === 0) return setCurrentItem("prelim");
-
-        setCurrentItem(questionKeys[index - 1]);
-    }
+        if (currentIndex > 0) setCurrentItem(steps[currentIndex - 1]);
+    };
 
     return <>
         <Navbar currentItem = {currentItem} setCurrentItem = {setCurrentItem} />
@@ -51,11 +52,17 @@ export function Assessment() {
             </header>
             <hr />
             <div className = {"flex scroll"}>
-                {currentItem === "intro" ? <Introduction /> : currentItem === "prelim" ? <Preliminary /> : <QuestionPage question = {questions.get(currentItem)} />}
+                {currentItem === "intro" ? (
+                    <Introduction />
+                ) : currentItem === "prelim" ? (
+                    <Preliminary />
+                ) : (
+                    <QuestionPage question={questions.get(currentItem)} />
+                )}
                 <h3>Progress</h3>
                 <div style = {{ display: "flex", gap: "10px" }}>
-                    <button style = {{ flex: "1" }} disabled = {currentItem === "intro"} onClick = {prev}>Previous</button>
-                    <button style = {{ flex: "1" }} disabled = {currentItem === questionKeys.at(-1)} onClick = {next}>Next</button>
+                    <button style = {{ flex: "1" }} disabled = {currentIndex <= 0} onClick = {prev}>Previous</button>
+                    <button style = {{ flex: "1" }} disabled = {currentIndex >= steps.length - 1} onClick = {next}>Next</button>
                 </div>
             </div>
         </main>
