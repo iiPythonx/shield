@@ -1,5 +1,6 @@
 import { jsPDF } from "jspdf";
-import MSU from "../assets/images/msstate_maroon.png";
+
+import { logoPDF } from "../../branding.json";
 import type { AnswerEntry, AppState } from "./state";
 import type { Form, Section } from "../types";
 
@@ -101,7 +102,7 @@ const drawSection = (
 export const generateReport = (appState: AppState) => {
     if (!appState.selectedForm) return;
 
-    const doc = new jsPDF();
+    const doc = new jsPDF({ compress: true });
     const width = doc.internal.pageSize.getWidth();
     const height = doc.internal.pageSize.getHeight();
 
@@ -116,7 +117,7 @@ export const generateReport = (appState: AppState) => {
     };
 
     // Centered logo
-    doc.addImage(MSU, (width - 100) / 2, (height - 17) / 3, 100, 17);
+    doc.addImage(logoPDF, (width - 100) / 2, (height - 17) / 3, 100, 17);
 
     // Title
     doc.setFont("helvetica", "bold");

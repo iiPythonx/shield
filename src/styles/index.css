@@ -2,7 +2,6 @@
 :root {
     --background: #121212;
     --foreground: #ffffff;
-    --maroon: #5d1725;
     --border: #505050;
 }
 
@@ -63,7 +62,7 @@ div#content {
 
 /* Components */
 button {
-    background: var(--maroon);
+    background: var(--brand);
     border-radius: 4px;
     border: none;
     padding: 4px 8px;

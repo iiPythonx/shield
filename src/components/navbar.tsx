@@ -1,11 +1,11 @@
 import { useState, type ReactNode } from "preact/compat";
 
 import { Modal } from "./modal";
+import { logoMain } from "../../branding.json"
 import { appState, clearState } from "../lib/state";
-
-import MSU from "../assets/images/msstate.svg";
-import "./navbar.css";
 import { generateReport } from "../lib/pdf";
+
+import "./navbar.css";
 
 function Section({ name, children }: { name: string, children: ReactNode }) {
     return <li class = "navbar-section">
@@ -22,7 +22,7 @@ export function Navbar({ currentItem, setCurrentItem }: { currentItem: string, s
     }
 
     return <aside className = {"flex"}>
-        <img src = {MSU} style = {{ width: "300px", alignSelf: "center" }} />
+        <img src = {logoMain} style = {{ width: "300px", alignSelf: "center" }} />
         <hr />
         <ul>
             {Item("intro", "Introduction")}
