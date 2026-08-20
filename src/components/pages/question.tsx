@@ -1,11 +1,10 @@
-import { useForm, useAnswers } from "../../lib/state";
+import { appState } from "../../lib/state";
 import type { Question } from "../../types";
 
-function ResponseSelector({ question, answer, setAnswer }: { question: string, answer: number | null, setAnswer: (q: string, a: number | null) => void }) {
-    const [form] = useForm();
+function ResponseSelector({ answer, setAnswer }: { question: string, answer: number | null, setAnswer: (a: number | null) => void }) {
     return (
         <div style = {{ display: "flex", gap: "10px" }}>
-            {form?.responses.map((response) => {
+            {appState.value.selectedForm?.responses.map((response) => {
                 const selected = response.id === answer;
                 return (
                     <button
@@ -15,7 +14,7 @@ function ResponseSelector({ question, answer, setAnswer }: { question: string, a
                             background: selected ? response.colors.bg : "none",
                             border: `1px solid ${response.colors.bg}`
                         }}
-                        onClick = {() => setAnswer(question, selected ? null : response.id)}
+                        onClick = {() => setAnswer(selected ? null : response.id)}
                     >
                         {response.text}
                     </button>
@@ -29,8 +28,7 @@ export function QuestionPage({ question }: { question: Question | undefined }) {
     if (!question) return <p>Requested question was not found.</p>;
 
     // Fetch answer data
-    const { answers, setAnswer, setNote } = useAnswers();
-    const data = answers[question.id] || { answer: null, notes: "" };
+    const data = appState.value.currentAnswers[question.id] || { answer: null, notes: "" };
 
     // Component
     return (
@@ -44,10 +42,26 @@ export function QuestionPage({ question }: { question: Question | undefined }) {
             </>)}
             <hr />
             <h3>Assessment</h3>
-            <ResponseSelector question = {question.id} answer = {data.answer} setAnswer = {setAnswer} />
+            <ResponseSelector question = {question.id} answer = {data.answer} setAnswer = {(a: number | null) => {
+                appState.value = {
+                    ...appState.value,
+                    currentAnswers: {
+                        ...appState.value.currentAnswers,
+                        [question.id]: { ...data, answer: a }
+                    }
+                }
+            }} />
             <h3>Notes</h3>
             <textarea
-                onInput = {(e) => setNote(question.id, e.currentTarget.value)}
+                onInput = {(e) => {
+                    appState.value = {
+                        ...appState.value,
+                        currentAnswers: {
+                            ...appState.value.currentAnswers,
+                            [question.id]: { ...data, notes: e.currentTarget.value }
+                        }
+                    }
+                }}
                 value = {data.notes}
             />
         </div>

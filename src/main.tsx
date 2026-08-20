@@ -7,12 +7,11 @@ import { Assessment } from "./assessment";
 import type { Form } from "./types";
 
 import "./index.css";
-import { useForm } from "./lib/state";
+import { appState } from "./lib/state";
 
 const form_data = Object.values(import.meta.glob("./assets/forms/*.jsonc", { query: "?raw", eager: true, import: "default" })).map((c) => parse(c)) as Form[];
 
 export function App() {
-    const [currentForm, setForm] = useForm();
     const [copyrightOpen, setCopyrightOpen] = useState<boolean>(false);
     const dropdownReference = useRef<HTMLSelectElement | null>(null);
 
@@ -23,12 +22,15 @@ export function App() {
         const form = form_data.find((form) => form.id === select.value);
         if (!form) return select.classList.add("invalid");
 
-        setForm(form);
+        appState.value = {
+            ...appState.value,
+            selectedForm: form
+        };
     }
 
     return <>
         {
-            currentForm ? <Assessment /> : <Modal title = "Assessment Setup">
+            appState.value.selectedForm ? <Assessment /> : <Modal title = "Assessment Setup">
                 <p>Please select the type of assessment you're conducting:</p>
                 <select value = {""} ref = {dropdownReference}>
                     {form_data.map((form) => {

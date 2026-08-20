@@ -1,22 +1,21 @@
 import { useMemo, useState } from "preact/hooks";
 
 import type { Question } from "./types";
-import { useForm } from "./lib/state";
+import { appState } from "./lib/state";
 import { Navbar } from "./components/navbar";
 import { QuestionPage } from "./components/pages/question";
 import { Introduction } from "./components/pages/introduction";
 import { Preliminary } from "./components/pages/preliminary";
 
 export function Assessment() {
-    const [currentForm] = useForm();
     const [currentItem, setCurrentItem] = useState<string>("intro");
     
     // Process questions
     const { questions, steps } = useMemo(() => {
-        if (!currentForm) return { questions: new Map<string, Question>(), steps: ["intro", "prelim"] };
+        if (!appState.value.selectedForm) return { questions: new Map<string, Question>(), steps: ["intro", "prelim"] };
 
         const map = new Map<string, Question>();
-        for (const section of currentForm.sections) {
+        for (const section of appState.value.selectedForm.sections) {
             for (const question of section.questions) map.set(question.id, question);
         }
 
@@ -24,9 +23,9 @@ export function Assessment() {
             questions: map,
             steps: ["intro", "prelim", ...map.keys()],
         };
-    }, [currentForm]);
+    }, [appState.value.selectedForm]);
 
-    if (!currentForm) return null;
+    if (!appState.value.selectedForm) return null;
 
     // Handle stepping
     const currentIndex = steps.indexOf(currentItem);
@@ -42,7 +41,7 @@ export function Assessment() {
         <hr />
         <main className = {"flex"}>
             <header>
-                <h2>{currentForm.source} - {currentForm.name}</h2>
+                <h2>{appState.value.selectedForm.source} - {appState.value.selectedForm.name}</h2>
             </header>
             <hr />
             <div className = {"flex scroll"}>

@@ -1,11 +1,10 @@
-import { useForm } from "../../lib/state"
+import { appState } from "../../lib/state"
 
 export function Introduction() {
-    const [form] = useForm();
     return <>
         <h2>Introduction</h2>
-        <h3>About This Assessment</h3>
-        <p>You are currently filling out a {form?.name} form made by {form?.source}.</p>
+        <h3>About This Assessment</h3>currentForm
+        <p>You are currently filling out a {appState.value.selectedForm?.name} form made by {appState.value.selectedForm?.source}.</p>
         <h3>How to Use</h3>
         <p>This assessment is split into three separate components:</p>
         <ul>
