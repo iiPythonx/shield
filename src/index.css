@@ -97,6 +97,13 @@ summary {
     }
 }
 
+footer {
+    cursor: pointer;
+    right: 10px;
+    bottom: 10px;
+    position: absolute;
+}
+
 /* Utilities */
 .flex {
     display: flex;
