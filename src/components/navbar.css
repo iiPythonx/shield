@@ -1,5 +1,8 @@
 aside li:not(.navbar-section) {
     cursor: pointer;
+    white-space: nowrap;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
 
     transition: border-color .1s ease;
     border-bottom: 1px solid var(--background);
@@ -14,7 +17,12 @@ aside li:not(.navbar-section) {
     }
 }
 
-aside > ul {
+aside ul {
     overflow-y: scroll;
     scrollbar-width: thin;
+    padding-left: 20px;
+}
+
+aside {
+    max-width: 300px;
 }

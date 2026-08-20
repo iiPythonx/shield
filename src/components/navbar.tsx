@@ -1,8 +1,9 @@
 import type { ReactNode } from "preact/compat";
 
-import "./navbar.css";
-import MSU from "../assets/icons/msstate.svg";
 import { useForm } from "../lib/state";
+
+import MSU from "../assets/icons/msstate.svg";
+import "./navbar.css";
 
 function Section({ name, children }: { name: string, children: ReactNode }) {
     return <li class = "navbar-section">
@@ -20,14 +21,14 @@ export function Navbar({ currentItem, setCurrentItem }: { currentItem: string, s
     }
 
     return <aside className = {"flex"}>
-        <img src = {MSU} style = {{ width: "300px" }} />
+        <img src = {MSU} />
         <hr />
         <ul>
             {Item("intro", "Introduction")}
             {Item("prelim", "Preliminary Information")}
             {currentForm.sections.map((section) => (
                 <Section name = {section.name}>
-                    {section.questions.map((question) => Item(question.id, question.id))}
+                    {section.questions.map((question) => Item(question.id, `${question.id}: ${question.name}`))}
                 </Section>
             ))}
         </ul>
