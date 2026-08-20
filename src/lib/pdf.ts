@@ -1,5 +1,5 @@
 import { jsPDF } from "jspdf";
-import MSU from "../assets/icons/msstate_maroon.png";
+import MSU from "../assets/images/msstate_maroon.png";
 
 import type { AppState } from "./state";
 

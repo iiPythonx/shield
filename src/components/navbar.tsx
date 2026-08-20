@@ -3,7 +3,7 @@ import { useState, type ReactNode } from "preact/compat";
 import { Modal } from "./modal";
 import { appState, clearState } from "../lib/state";
 
-import MSU from "../assets/icons/msstate.svg";
+import MSU from "../assets/images/msstate.svg";
 import "./navbar.css";
 import { generateReport } from "../lib/pdf";
 
