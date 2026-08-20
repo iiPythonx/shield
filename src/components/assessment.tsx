@@ -26,12 +26,22 @@ function ResponseSelector({ responses }: { responses: Response[] }) {
 
 function Question({ form, question }: { form: Form, question: Question }) {
     return <div className = {"flex question"}>
-        <h4>{question.id}: {question.name}</h4>
-        {/* <details>
-            <summary>Notes</summary>
-            <textarea />
-        </details> */}
-        <ResponseSelector responses = {form.responses} />
+        <details>
+            <summary class = "section-title">{question.id}: {question.name}</summary>
+            <div className = {"flex"}>
+                <div style = {{ display: "flex", gap: "10px" }}>
+                    {Object.entries(question.attributes).map(([name, value]) => <span>{name}: <b>{value}</b></span>)}
+                </div>
+                <ul>
+                    {question.details.map((detail) => <li>{detail}</li>)}
+                </ul>
+                <details>
+                    <summary>Additional notes</summary>
+                    <textarea style = {{ color: "#000", outline: "none" }} />
+                </details>
+                <ResponseSelector responses = {form.responses} />
+            </div>
+        </details>
     </div>;
 }
 

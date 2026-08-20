@@ -1,6 +1,8 @@
 export type Question = {
     id: string;
     name: string;
+    attributes: Record<string, string>;
+    details: string[];
 }
 
 export type Response = {
