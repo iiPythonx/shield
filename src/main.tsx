@@ -5,10 +5,11 @@ import { version } from "../package.json";
 
 import { Modal } from "./components/modal";
 import { Assessment } from "./assessment";
+import { appState } from "./lib/state";
 import type { Form } from "./types";
 
-import "./index.css";
-import { appState } from "./lib/state";
+import "./styles/index.css";
+import "./styles/responsive.css";
 
 const form_data = Object.values(import.meta.glob("./assets/forms/*.jsonc", { query: "?raw", eager: true, import: "default" })).map((c) => parse(c)) as Form[];
 
