@@ -1,153 +1,62 @@
 import { useState } from "preact/hooks";
-import Icon from "../assets/icons/msstate_horizontal_white.svg";
-import type { Form, Section, Question, Response } from "../types";
 
-type AnswerResponse = {
-    response: number | null;
-    notes: string;
-};
+import { Navbar } from "./navbar";
+import type { Question } from "../types";
+import { QuestionPage } from "./question";
+import { useForm } from "../lib/state";
 
-function ResponseSelector({
-    responses,
-    selectedResponse,
-    onSelect
-}: {
-    responses: Response[],
-    selectedResponse: number | null,
-    onSelect: (response: number | null) => void
-}) {
-    return (
-        <div style = {{ display: "flex", gap: "10px" }}>
-            {responses.map((response) => {
-                const selected = response.id === selectedResponse;
-                return (
-                    <button
-                        key = {response.id}
-                        style = {{
-                            color: selected ? response.colors.fg : undefined,
-                            background: selected ? response.colors.bg : "none",
-                            border: `1px solid ${response.colors.bg}`
-                        }}
-                        onClick = {() => onSelect(selected ? null : response.id)}
-                    >
-                        {response.text}
-                    </button>
-                );
-            })}
-        </div>
-    );
+function Introduction() {
+    return <p>Introduction!</p>;
 }
 
-function Question({ 
-    form,
-    question,
-    answer,
-    onResponseSelect,
-    onNotesChange
-}: {
-    form: Form,
-    question: Question,
-    answer: AnswerResponse,
-    onResponseSelect: (response: number | null) => void,
-    onNotesChange: (notes: string) => void
-}) {
-    return <div className = {"flex question"}>
-        <details name = "accordion">
-            <summary className = {"section-title"} style = {{ color: form.responses.find((r) => r.id === answer.response)?.colors.bg }}>{question.id}: {question.name}</summary>
-            <div className = {"flex"}>
-                <div style = {{ display: "flex", gap: "10px" }}>
-                    {Object.entries(question.attributes).map(([name, value]) => <span>{name}: <b>{value}</b></span>)}
-                </div>
-                <ul>
-                    {question.details.map((detail) => <li>{detail}</li>)}
-                </ul>
-                <details>
-                    <summary>Additional notes</summary>
-                    <textarea 
-                        style = {{ color: "#000", outline: "none" }} 
-                        value = {answer.notes}
-                        onInput = {(e) => onNotesChange((e.target as HTMLTextAreaElement).value)}
-                    />
-                </details>
-                <ResponseSelector 
-                    responses = {form.responses} 
-                    selectedResponse = {answer.response}
-                    onSelect = {onResponseSelect}
-                />
-            </div>
-        </details>
-    </div>;
+function Preliminary() {
+    return <p>Preliminary!</p>;
 }
 
-function Section({
-    form,
-    section,
-    answers,
-    onUpdateQuestion
-}: {
-    form: Form,
-    section: Section,
-    answers: Record<string | number, AnswerResponse>,
-    onUpdateQuestion: (id: string | number, updates: Partial<AnswerResponse>) => void
-}) {
-    return <details className = {"flex"}>
-        <summary class = "section-title">{section.name} ({section.id})</summary>
-        <div className = {"flex"}>{section.questions.map((q) => (
-            <Question 
-                key = {q.id}
-                form = {form} 
-                question = {q} 
-                answer = {answers[q.id] || { response: null, notes: "" }}
-                onResponseSelect = {(response) => onUpdateQuestion(q.id, { response })}
-                onNotesChange = {(notes) => onUpdateQuestion(q.id, { notes })}
-            />
-        ))}</div>
-    </details>;
-}
+export function Assessment() {
+    const [currentForm,] = useForm();
+    if (!currentForm) return;
+    
+    const [currentItem, setCurrentItem] = useState<string>("intro");
+    
+    const questions = new Map<string, Question>();
+    for (const section of currentForm.sections) {
+        for (const question of section.questions) questions.set(question.id, question);
+    }
 
-export function Assessment({ form }: { form: Form }) {
-    const [formAnswers, setFormAnswers] = useState<Record<string | number, AnswerResponse>>({});
+    const questionKeys = [...questions.keys()];
 
-    const updateQuestion = (questionId: string | number, updates: Partial<AnswerResponse>) => {
-        setFormAnswers(prev => {
-            const currentAnswer = prev[questionId] || { response: null, notes: "" };
-            return {
-                ...prev,
-                [questionId]: { ...currentAnswer, ...updates }
-            };
-        });
-    };
+    const next = () => {
+        if (currentItem === "intro") return setCurrentItem("prelim");
+        if (currentItem === "prelim") return setCurrentItem(questionKeys[0]);
+        setCurrentItem(questionKeys[questionKeys.indexOf(currentItem) + 1]);
+    }
 
-    const submitAssessment = () => {
-        console.log(form.sections.reduce((acc, section) => {
-            section.questions.forEach((q) => {
-                acc[q.id] = formAnswers[q.id] || { response: null, notes: "" };
-            });
-            return acc;
-        }, {} as Record<string | number, AnswerResponse>));
-    };
+    const prev = () => {
+        if (currentItem === "intro") return;
+        if (currentItem === "prelim") return setCurrentItem("intro");
+
+        const index = questionKeys.indexOf(currentItem);
+        if (index === 0) return setCurrentItem("prelim");
+
+        setCurrentItem(questionKeys[index - 1]);
+    }
 
     return <>
-        <aside>
-            <img src = {Icon} style = {{ width: "300px" }} />
-        </aside>
+        <Navbar currentItem = {currentItem} setCurrentItem = {setCurrentItem} />
         <hr />
         <main className = {"flex"}>
             <header>
-                <h2>{form.source} - {form.name}</h2>
+                <h2>{currentForm.source} - {currentForm.name}</h2>
             </header>
             <hr />
             <div className = {"flex scroll"}>
-                {form.sections.map((section) => (
-                    <Section 
-                        key = {section.id} 
-                        form = {form} 
-                        section = {section} 
-                        answers = {formAnswers}
-                        onUpdateQuestion = {updateQuestion}
-                    />
-                ))}
-                <button onClick = {submitAssessment}>Submit</button>
+                {currentItem === "intro" ? <Introduction /> : currentItem === "prelim" ? <Preliminary /> : <QuestionPage question = {questions.get(currentItem)} />}
+                <h3>Progress</h3>
+                <div style = {{ display: "flex", gap: "10px" }}>
+                    <button style = {{ flex: "1" }} disabled = {currentItem === "intro"} onClick = {prev}>Previous</button>
+                    <button style = {{ flex: "1" }} disabled = {currentItem === questionKeys.at(-1)} onClick = {next}>Next</button>
+                </div>
             </div>
         </main>
     </>

@@ -1,0 +1,20 @@
+aside li:not(.navbar-section) {
+    cursor: pointer;
+
+    transition: border-color .1s ease;
+    border-bottom: 1px solid var(--background);
+    
+    &:hover {
+        border-color: var(--foreground);
+    }
+
+    &.selected {
+        font-weight: bold;
+        border-bottom: 1px solid var(--foreground);
+    }
+}
+
+aside > ul {
+    overflow-y: scroll;
+    scrollbar-width: thin;
+}

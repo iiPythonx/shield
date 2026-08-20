@@ -1,5 +1,5 @@
 import { render } from "preact";
-import { useRef, useState } from "preact/hooks";
+import { useRef } from "preact/hooks";
 import { parse } from "jsonc-parser";
 
 import { Modal } from "./components/modal";
@@ -7,11 +7,12 @@ import { Assessment } from "./components/assessment";
 import type { Form } from "./types";
 
 import "./index.css";
+import { useForm } from "./lib/state";
 
 const form_data = Object.values(import.meta.glob("./assets/forms/*.jsonc", { query: "?raw", eager: true, import: "default" })).map((c) => parse(c)) as Form[];
 
 export function App() {
-    const [currentForm, setForm] = useState<Form | null>(null);
+    const [currentForm, setForm] = useForm();
     const dropdownReference = useRef<HTMLSelectElement | null>(null);
 
     const continueWithSelectedType = () => {

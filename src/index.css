@@ -1,3 +1,10 @@
+/* Theme */
+:root {
+    --background: #121212;
+    --foreground: #ffffff;
+    --maroon: #5d1725;
+}
+
 /* Fonts */
 @font-face {
     font-family: "Google Sans";
@@ -19,7 +26,7 @@
 
 /* Basic style */
 * {
-    color: #fff;
+    color: var(--foreground);
     margin: 0px;
     font-family: "Google Sans", sans-serif;
 }
@@ -29,9 +36,9 @@ html {
 }
 
 body {
-    background: #182227;
-    margin: 10px;
-    height: calc(100% - 20px);
+    background: var(--background);
+    margin: 20px;
+    height: calc(100% - 40px);
 }
 
 /* Page layout */
@@ -51,7 +58,7 @@ div#content {
 
 /* Components */
 button {
-    background: #0cb588;
+    background: var(--maroon);
     border-radius: 4px;
     border: none;
     padding: 4px 8px;
@@ -63,11 +70,16 @@ button {
     &:hover {
         opacity: 0.9;
     }
+
+    &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
 }
 
 select {
     border: none;
-    border-bottom: 1px solid #fff;
+    border-bottom: 1px solid var(--foreground);
     background: none;
 
     &.invalid {
@@ -94,10 +106,4 @@ summary {
 
 .scroll {
     overflow-y: scroll;
-}
-
-.question {
-    border: 1px solid #797979;
-    border-radius: 4px;
-    padding: 4px;
 }
