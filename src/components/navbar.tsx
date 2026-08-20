@@ -34,7 +34,6 @@ export function Navbar({ currentItem, setCurrentItem }: { currentItem: string, s
             ))}
         </ul>
         <div style = {{ flex: "1" }}></div>
-        <button onClick = {() => console.log(appState.value.currentAnswers)}>Export (JSON)</button>
         <button onClick = {() => generateReport(appState.value)}>Export (PDF)</button>
         <button onClick = {() => setConfirmModalOpen(true)}>Clear Assessment</button>
         {confirmModalOpen && <Modal title = {"Confirm Assessment Clearing"}>
