@@ -2,7 +2,6 @@ import { render } from "preact";
 import { useRef, useState } from "preact/hooks";
 import { parse } from "jsonc-parser";
 import { version } from "../package.json";
-import { color } from "../branding.json";
 
 import { Modal } from "./components/modal";
 import { Assessment } from "./assessment";
@@ -30,8 +29,6 @@ export function App() {
             selectedForm: form
         };
     }
-
-    document.documentElement.style.setProperty("--brand", color);
 
     return <>
         {
