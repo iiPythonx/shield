@@ -14,6 +14,13 @@ export function Preliminary() {
         nameReference.current.value = "";
     }
 
+    const removeAssessor = (assessor: string) => {
+        appState.value = {
+            ...appState.value,
+            assessors: appState.value.assessors.filter((a) => a !== assessor)
+        };
+    }
+
     return <div className = {"flex"}>
         <h2>Preliminary Information</h2>
         <h3>Assessment Site</h3>
@@ -45,7 +52,9 @@ export function Preliminary() {
         />
 
         <h3>Assessors</h3>
-        {appState.value.assessors.length ? <ul>{appState.value.assessors.map(a => <li>{a}</li>)}</ul> : ""}
+        {appState.value.assessors.length ? <ul>{appState.value.assessors.map(a => (
+            <li>{a} (<a onClick = {() => removeAssessor(a)} href = "#">remove</a>)</li>
+        ))}</ul> : ""}
         <div style = {{ display: "flex", gap: "10px" }}>
             <input placeholder = "Assessor name" ref = {nameReference} />
             <button onClick = {addAssessor}>Add</button>

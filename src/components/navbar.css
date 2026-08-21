@@ -37,7 +37,7 @@ aside {
     max-width: 300px;
 }
 
-svg {
+aside svg {
     fill: var(--foreground);
     opacity: 0;
 
