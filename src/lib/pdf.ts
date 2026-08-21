@@ -134,9 +134,12 @@ export const generateReport = (appState: AppState) => {
     doc.text(appState.location, width / 2, (height / 3) + 55, { align: "center" });
 
     // Assessors / POC
+    const assessors = appState.assessors;
+    if (!assessors.length) assessors.push("Nobody");
+
     doc.setFontSize(8);
-    printLines(["Assessed By:", ...appState.assessors], 5);
-    printLines(["Made For:", appState.pocName, appState.pocEmail], width - 5, { align: "right" });
+    printLines(["Assessed By:", ...assessors], 5);
+    printLines(["Made For:", appState.pocName || "N/A", appState.pocEmail || "N/A"], width - 5, { align: "right" });
 
     // Content
     doc.addPage();
