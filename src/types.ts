@@ -2,7 +2,7 @@ export type Question = {
     id: string;
     name: string;
     sections: Record<string, string[]>;
-}
+};
 
 export type Response = {
     id: number;
@@ -11,13 +11,13 @@ export type Response = {
         bg: string;
     };
     text: string;
-}
+};
 
 export type Section = {
     id: number;
     name: string;
-    questions: Question[]
-}
+    questions: Question[];
+};
 
 export type Form = {
     id: string;
@@ -25,4 +25,4 @@ export type Form = {
     source: string;
     responses: Response[];
     sections: Section[];
-}
+};

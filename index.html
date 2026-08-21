@@ -1,23 +1,30 @@
 <!doctype html>
-<html lang = "en">
+<html lang="en">
     <head>
-        <meta charset = "utf-8" />
-        <link rel = "icon" type = "image/svg+xml" href = "/favicon.svg" />
-        <link rel = "shortcut icon" href = "/favicon.ico" />
-        <meta name = "viewport" content = "width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="shortcut icon" href="/favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
         <!-- Propagate brand color -->
-        <meta name = "theme-color" content = "%BRAND_COLOR%">
-        <style>:root { --brand: %BRAND_COLOR%; }</style>
+        <meta name="theme-color" content="%BRAND_COLOR%" />
+        <style>
+            :root {
+                --brand: %BRAND_COLOR%;
+            }
+        </style>
 
         <!-- OG -->
-        <meta property = "og:title" content = "SHIELD">
-        <meta property = "og:description" content = "Web-based assessment platform.">
+        <meta property="og:title" content="SHIELD" />
+        <meta
+            property="og:description"
+            content="Web-based assessment platform."
+        />
 
         <title>SHIELD</title>
     </head>
     <body>
-        <div id = "content"></div>
-        <script type = "module" src = "/src/main.tsx"></script>
+        <div id="content"></div>
+        <script type="module" src="/src/main.tsx"></script>
     </body>
 </html>

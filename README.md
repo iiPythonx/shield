@@ -1,6 +1,6 @@
 # SHIELD
 
-Reporting program for [Mississippi State University](https://msstate.edu)'s Cybersecurity Assessment Program meant to replace [CSET](https://github.com/cisagov/cset).  
+Reporting program for [Mississippi State University](https://msstate.edu)'s Cybersecurity Assessment Program meant to replace [CSET](https://github.com/cisagov/cset).
 
 ### Supported Assessments
 

@@ -4,7 +4,12 @@ import { logoPDF } from "../../branding.json";
 import type { AnswerEntry, AppState } from "./state";
 import type { Form, Section } from "../types";
 
-const writeControlStatus = (doc: jsPDF, text: string, x: number, y: number): number => {
+const writeControlStatus = (
+    doc: jsPDF,
+    text: string,
+    x: number,
+    y: number
+): number => {
     doc.setFont("helvetica", "normal");
     doc.setFontSize(8);
 
@@ -16,15 +21,15 @@ const writeControlStatus = (doc: jsPDF, text: string, x: number, y: number): num
 };
 
 const drawSection = (
-    form: Form, 
-    answers: Record<string, AnswerEntry>, 
-    doc: jsPDF, 
-    section: Section, 
-    x: number, 
-    y: number, 
+    form: Form,
+    answers: Record<string, AnswerEntry>,
+    doc: jsPDF,
+    section: Section,
+    x: number,
+    y: number,
     pageWidth: number
 ): number => {
-    const boxWidth = pageWidth - (x * 2);
+    const boxWidth = pageWidth - x * 2;
     const pageHeight = doc.internal.pageSize.getHeight();
 
     // Try to prevent orphan headers
@@ -51,7 +56,7 @@ const drawSection = (
         const data = answers[question.id] || { answer: null, notes: "" };
         const noteText = data.notes.trim() || "None.";
         const noteLines = doc.splitTextToSize(noteText, boxWidth - 6);
-        const boxHeight = 25 + (3.5 * noteLines.length);
+        const boxHeight = 25 + 3.5 * noteLines.length;
 
         // Handle page breaking
         if (y + boxHeight > pageHeight - 12) {
@@ -79,7 +84,12 @@ const drawSection = (
             doc.setDrawColor(selected ? response.colors.bg : "#000");
             doc.setTextColor(selected ? response.colors.fg : "#000");
 
-            const width = writeControlStatus(doc, response.text, buttonX, buttonY);
+            const width = writeControlStatus(
+                doc,
+                response.text,
+                buttonX,
+                buttonY
+            );
             buttonX += width + 3;
         }
 
@@ -106,7 +116,11 @@ export const generateReport = (appState: AppState) => {
     const width = doc.internal.pageSize.getWidth();
     const height = doc.internal.pageSize.getHeight();
 
-    const printLines = (lines: string[], x: number, options?: Record<string, string>) => {
+    const printLines = (
+        lines: string[],
+        x: number,
+        options?: Record<string, string>
+    ) => {
         let offset = 4 * lines.length;
         lines.forEach((line, index) => {
             if (index === 0) doc.setFont("helvetica", "bold");
@@ -124,14 +138,16 @@ export const generateReport = (appState: AppState) => {
     doc.text(
         `${appState.selectedForm.source} ${appState.selectedForm.name} Assessment`,
         width / 2,
-        (height / 3) + 34,
+        height / 3 + 34,
         { align: "center" }
     );
 
     doc.setFontSize(14);
     doc.setFont("helvetica", "normal");
-    doc.text(appState.company, width / 2, (height / 3) + 50, { align: "center" });
-    doc.text(appState.location, width / 2, (height / 3) + 55, { align: "center" });
+    doc.text(appState.company, width / 2, height / 3 + 50, { align: "center" });
+    doc.text(appState.location, width / 2, height / 3 + 55, {
+        align: "center"
+    });
 
     // Assessors / POC
     const assessors = appState.assessors;
@@ -139,14 +155,26 @@ export const generateReport = (appState: AppState) => {
 
     doc.setFontSize(8);
     printLines(["Assessed By:", ...assessors], 5);
-    printLines(["Made For:", appState.pocName || "N/A", appState.pocEmail || "N/A"], width - 5, { align: "right" });
+    printLines(
+        ["Made For:", appState.pocName || "N/A", appState.pocEmail || "N/A"],
+        width - 5,
+        { align: "right" }
+    );
 
     // Content
     doc.addPage();
 
     let y = 15;
     for (const section of appState.selectedForm.sections || []) {
-        y = drawSection(appState.selectedForm, appState.currentAnswers, doc, section, 10, y, 200);
+        y = drawSection(
+            appState.selectedForm,
+            appState.currentAnswers,
+            doc,
+            section,
+            10,
+            y,
+            200
+        );
     }
 
     doc.save("shield.pdf");

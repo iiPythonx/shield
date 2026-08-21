@@ -43,7 +43,6 @@
 
     // Individual sections
     "sections": [
-
         // GOVERN
         {
             "id": 1,
@@ -85,9 +84,7 @@
                         "Risk Addressed": [
                             "Insufficient cybersecurity policies and procedures/practices that can manage cybersecurity risk for the organization's technologies and processes."
                         ],
-                        "Scope": [
-                            "Organization-wide."
-                        ],
+                        "Scope": ["Organization-wide."],
                         "Recommended Action": [
                             "Policies for managing the cybersecurity program are reviewed at least annually, updated when changes are applied, communicated, and enforced to reflect changes in requirements, risks, threats, technology, and organizational mission. Policies are established based on the organization and its cybersecurity strategy, and priorities are communicated and enforced. It is recommended that organizational governance encompass the policies, procedures, and processes necessary to manage the organization’s regulatory, legal, risk, environmental, and operational obligations.",
                             "OT: OT-specific policies and procedures should consider the limitations of the existing IT cybersecurity program to identify priorities for critical operational functions, OT-specific security concerns, and compensating controls."
@@ -109,9 +106,7 @@
                         "Risk Addressed": [
                             "Inability to quickly and effectively isolate, contain, eradicate, remediate, and communicate about cybersecurity incidents."
                         ],
-                        "Scope": [
-                            "Organization-wide."
-                        ],
+                        "Scope": ["Organization-wide."],
                         "Recommended Action": [
                             "Organizations develop, maintain, update, and regularly exercise IR plans for common and organizationally specific (e.g., by sector, locality) threat scenarios and tactics, techniques, and procedures (TTPs). Ensure drills are realistic and include all relevant stakeholders. IR plans should be reviewed and drilled, at a minimum, on an annual basis.",
                             "OT: OT IR plans account for specific safety and containment considerations, which differ from existing IT plans and priorities."
@@ -133,9 +128,7 @@
                         "Risk Addressed": [
                             "Insufficient cybersecurity supply chain risk management (C-SCRM) practices that cannot securely support the organization's technologies and processes. "
                         ],
-                        "Scope": [
-                            "Third-party vendors and service providers."
-                        ],
+                        "Scope": ["Third-party vendors and service providers."],
                         "Recommended Action": [
                             "Procurement documents and contracts, such as service-level agreements (SLAs), stipulate that vendors and/or service providers notify the procuring customer of security incidents and vulnerabilities within a risk-informed time frame as determined by the organization.",
                             "OT: Organizations with OT assets need to document and track serial numbers, checksums, digital certificates/signatures, or other identifying features that can enable them to verify the authenticity of vendor-provided OT hardware, software and firmware."
@@ -238,9 +231,7 @@
                         "Risk Addressed": [
                             "Reduce the risk of gaps in cyber defenses or overconfidence in existing protections."
                         ],
-                        "Scope": [
-                            "Organizational assets and networks."
-                        ],
+                        "Scope": ["Organizational assets and networks."],
                         "Recommended Action": [
                             "Organizations regularly engage third-party cybersecurity experts to validate their defenses through various exercises, such as penetration tests, bug bounties, incident simulations, and table-top exercises. These tests, both announced and unannounced, assess the ability of adversaries to infiltrate and move laterally within the network, targeting critical systems. Ensure findings from these tests are addressed."
                         ],
@@ -261,9 +252,7 @@
                         "Risk Addressed": [
                             "Reporting known security vulnerabilities in a company's software, networks, devices, and systems directly to the organization allows them to address and mitigate these vulnerabilities before adversaries can exploit them."
                         ],
-                        "Scope": [
-                            "All public-facing assets and web domains."
-                        ],
+                        "Scope": ["All public-facing assets and web domains."],
                         "Recommended Action": [
                             "Organizations maintain a public, easily discoverable method for individuals to notify (e.g., via email address or web form) organizations’ security teams of vulnerable, misconfigured, or otherwise exploitable assets. Valid submissions are acknowledged and responded to in a timely manner, taking into account the completeness and complexity of the vulnerability. Validated and exploitable weaknesses are mitigated consistent with their severity.",
                             "Individuals who identify and report vulnerabilities discovered in good faith should be protected under safe harbor rules. Safe harbor rules are provisions in law that protect individuals or entities from penalties under certain conditions.",
@@ -286,9 +275,7 @@
                         "Risk Addressed": [
                             "Incomplete or inaccurate understanding of network topology inhibits effective incident response and recovery."
                         ],
-                        "Scope": [
-                            "Organizational networks."
-                        ],
+                        "Scope": ["Organizational networks."],
                         "Recommended Action": [
                             "Organizations maintain accurate documentation describing current network topology and relevant information across all IT and OT networks. Network reviews should be performed and tracked on an annual basis and documentation updated when network topology changes are made."
                         ],
@@ -342,9 +329,7 @@
                         "Risk Addressed": [
                             "Adversaries use brute force techniques to crack passwords when unknown or hashes are obtained. They systematically guess using repetitive methods, either interacting with services to validate credentials or working offline with acquired data."
                         ],
-                        "Scope": [
-                            "User account passwords."
-                        ],
+                        "Scope": ["User account passwords."],
                         "Recommended Action": [
                             "Organizations have a system-enforced policy to establish a minimum password strength, to include a password length of 16 or more characters for all password-protected IT assets and all OT assets, when technically feasible. Organizations should consider leveraging passphrases and password managers to make it easier for users to maintain sufficiently long passwords. In instances where minimum password lengths are not technically feasible, compensating controls are applied and recorded, and all login attempts to those assets are logged. Assets that cannot support passwords of sufficient strength are prioritized for upgrade or replacement."
                         ],
@@ -365,9 +350,7 @@
                         "Risk Addressed": [
                             "Adversaries can obtain and exploit account credentials to gain access, maintain persistence, escalate privileges, or evade defenses. These credentials can bypass network access controls for continuous access to remote systems and external services."
                         ],
-                        "Scope": [
-                            "User accounts."
-                        ],
+                        "Scope": ["User accounts."],
                         "Recommended Action": [
                             "Organizations create distinct and separate credentials for similar services and asset access across IT and OT networks. Users refrain from reusing passwords for their accounts, applications, and services. Additionally, system administrators and service/machine accounts have unique passwords that differ from those of regular user accounts.",
                             "No universal non-person entity (NPE) account passwords should be deployed. If NPE devices are used, leverage different passwords for each.",
@@ -487,9 +470,7 @@
                         "Risk Addressed": [
                             "Unauthorized access to network resources and the potential for adversaries to move across systems undetected, compromising sensitive data and critical systems."
                         ],
-                        "Scope": [
-                            "All organizational accounts."
-                        ],
+                        "Scope": ["All organizational accounts."],
                         "Recommended Action": [
                             "All user accounts, system roles, and processes operate with the minimum privileges necessary to perform their tasks.",
                             "Perform quarterly reviews of access permissions and role assignments to verify compliance with established policies."
@@ -587,9 +568,7 @@
                         "Risk Addressed": [
                             "Adversaries might send victims emails with malicious attachments or links, aiming to run harmful code on their systems. They can also conduct phishing through third-party services like social media platforms."
                         ],
-                        "Scope": [
-                            "All organizational email infrastructure."
-                        ],
+                        "Scope": ["All organizational email infrastructure."],
                         "Recommended Action": [
                             "On all corporate email infrastructure (1) STARTTLS is enabled, (2) Sender Policy Framework (SPF) and DomainKeys Identified Mail (DKIM) are enabled, and (3) Domain-based Message Authentication, Reporting, and Conformance (DMARC) is enabled and set to “reject.”"
                         ],
@@ -610,9 +589,7 @@
                         "Risk Addressed": [
                             "Adversaries rely on users to open malicious files to execute code. Social engineering tactics could be used to convince users to open such files."
                         ],
-                        "Scope": [
-                            "All organizational assets."
-                        ],
+                        "Scope": ["All organizational assets."],
                         "Recommended Action": [
                             "A system-enforced policy that disables macros, or similar embedded code, by default on all devices to prevent automatic execution of code or applications.",
                             "If macros must be enabled in specific circumstances, establish a policy for authorized users to request that macros are enabled on specific assets.",
@@ -635,9 +612,7 @@
                         "Risk Addressed": [
                             "Delayed, insufficient, or incomplete ability to maintain or restore functionality of critical devices and service operations. "
                         ],
-                        "Scope": [
-                            "Organizational assets."
-                        ],
+                        "Scope": ["Organizational assets."],
                         "Recommended Action": [
                             "Implement policies and processes to develop, document, and maintain secure change management for technology platforms and enforce configuration restrictions to prevent unauthorized changes.",
                             "Technical configuration change control processes are in place, prohibiting unauthorized changes unless approved. Test and document proposed changes in a non-production environment and analyze potential security impacts before implementation.",
@@ -689,9 +664,7 @@
                         "Risk Addressed": [
                             "Adversaries can manipulate products or delivery mechanisms before they reach final users and attempt data or system compromise. They can target devices that move across industrial control systems and production networks."
                         ],
-                        "Scope": [
-                            "Organizational assets."
-                        ],
+                        "Scope": ["Organizational assets."],
                         "Recommended Action": [
                             "Implement an administrative policy and process that requires review, testing, and approval before new hardware, firmware, or software is installed or deployed.",
                             "Organizations maintain a list of approved hardware, firmware, and software that includes specification of approved versions, when technically feasible.",
@@ -740,9 +713,7 @@
                         "Risk Addressed": [
                             "Adversaries might infiltrate systems, including disconnected or air-gapped networks, by copying malware to removable media such as USB drives."
                         ],
-                        "Scope": [
-                            "Organizational assets."
-                        ],
+                        "Scope": ["Organizational assets."],
                         "Recommended Action": [
                             "Organizations maintain policies and processes to ensure that unauthorized media and hardware are not connected to IT and OT assets, such as limiting use of USB devices and removable media.",
                             "OT: When feasible, establish procedures to remove, disable, or otherwise secure physical ports to prevent the connection of unauthorized devices or establish procedures for granting access through approved exceptions."
@@ -798,9 +769,7 @@
                         "Risk Addressed": [
                             "Malicious software can involve payloads, droppers, backdoors, etc. Adversaries use malware to control remote machines, evade defenses, and execute post-compromise actions."
                         ],
-                        "Scope": [
-                            "Organization-wide."
-                        ],
+                        "Scope": ["Organization-wide."],
                         "Recommended Action": [
                             "Implement signature-based mechanisms (relying on known patterns or signatures of malicious code used by antivirus software to identify and block threats) and non-signature-based mechanisms (focusing behavior, heuristics, or anomalies) to detect and eradicate malicious code at system endpoints. Ensure antivirus software is updated, active, and configured to automatically scan emails and removable media (e.g., flash drives) for ransomware and other malware.",
                             "OT: Using antivirus software with OT devices may require special practices, including compatibility checks, change management, and performance impact metrics. These practices should be employed to test new signatures and new versions of malicious code protection solutions."
@@ -822,9 +791,7 @@
                         "Risk Addressed": [
                             "Initial access, privilege escalation, and lateral movement."
                         ],
-                        "Scope": [
-                            "Organization-wide."
-                        ],
+                        "Scope": ["Organization-wide."],
                         "Recommended Action": [
                             "Ensure the organization has defined clear criteria and processes for adverse events. If an adverse event is suspected, follow the protocol outlined in the incident response plan to escalate the situation.",
                             "Automate event information analysis as much as possible to accelerate the investigative timeline for managing suspected adverse events. This will give analysts the time and capacity to mitigate these events effectively.",
@@ -856,9 +823,7 @@
                         "Risk Addressed": [
                             "Without established communication procedures, incidents can disrupt coordination among response teams, slowing incident resolution, increasing downtime, and amplifying overall damage."
                         ],
-                        "Scope": [
-                            "Organization-wide."
-                        ],
+                        "Scope": ["Organization-wide."],
                         "Recommended Action": [
                             "Design a communications plan that identifies stakeholders and mechanisms for coordination and communications during an incident.",
                             "Collaborate with stakeholders and securely share information consistent with response plans and information-sharing agreements. Priorities for sharing information include preventing the spread of infections to other systems and networks.",
@@ -883,9 +848,7 @@
                         "Risk Addressed": [
                             "Without timely incident reporting, CISA and other groups are less able to assist affected organizations and lack critical insight into the broader threat landscape, such as whether a broader attack is occurring against a specific sector."
                         ],
-                        "Scope": [
-                            "Organization-wide."
-                        ],
+                        "Scope": ["Organization-wide."],
                         "Recommended Action": [
                             "Organizations maintain policy and procedures on to whom and how to report all confirmed cybersecurity incidents to appropriate external entities (e.g., state/federal regulators or sector risk management agencies [SRMAs] as required, information sharing and analysis centers [ISACs], information sharing and analysis organizations [ISAOs], and CISA).",
                             "Known incidents are reported to CISA as well as other necessary parties within time frames directed by applicable regulatory guidance or in the absence of guidance, as soon as safely feasible. "
@@ -915,9 +878,7 @@
                         "Risk Addressed": [
                             "Disruption to the availability of an asset, service, or system."
                         ],
-                        "Scope": [
-                            "Organizational assets."
-                        ],
+                        "Scope": ["Organizational assets."],
                         "Recommended Action": [
                             "Execute plans to recover and restore service to business- or mission-critical assets or systems that might be impacted by a cybersecurity incident.  This may include the ability to execute mission essential functions in a degraded manner without access to critical assets or even internet access (e.g., shift to paper-based operations, radio communications, etc.)",
                             "Complete post-incident analysis to identify areas for improvement and refine the incident response plan. Focus on incorporating lessons learned, enhancing detection and response capabilities, updating policies and procedures including training, and ensuring that all stakeholders are informed of the changes."

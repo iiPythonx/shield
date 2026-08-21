@@ -10,8 +10,8 @@ export default defineConfig({
         {
             name: "inject-brand-color",
             transformIndexHtml(html) {
-                return html.replace(/%BRAND_COLOR%/g, branding.color)
+                return html.replace(/%BRAND_COLOR%/g, branding.color);
             }
         }
-    ],
-})
+    ]
+});

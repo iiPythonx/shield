@@ -8,18 +8,18 @@
     align-items: center;
     cursor: pointer;
     gap: 10px;
-    
+
     svg {
         min-width: 15px;
         max-width: 15px;
     }
-    
+
     span {
         white-space: nowrap;
         overflow-x: hidden;
         text-overflow: ellipsis;
 
-        transition: border-color .1s ease;
+        transition: border-color 0.1s ease;
         border-bottom: 1px solid var(--background);
 
         &:hover {

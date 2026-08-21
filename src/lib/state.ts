@@ -3,27 +3,27 @@ import type { Form } from "../types";
 
 export interface AnswerEntry {
     answer: number | null;
-    notes:  string;
+    notes: string;
 }
 
 export interface AppState {
-    selectedForm:   Form | null;
+    selectedForm: Form | null;
     currentAnswers: Record<string, AnswerEntry>;
-    company:        string;
-    location:       string;
-    pocName:        string;
-    pocEmail:       string;
-    assessors:      string[];
+    company: string;
+    location: string;
+    pocName: string;
+    pocEmail: string;
+    assessors: string[];
 }
 
 const defaultState: AppState = {
-    selectedForm:   null,
+    selectedForm: null,
     currentAnswers: {},
-    company:        "",
-    location:       "",
-    pocName:        "",
-    pocEmail:       "",
-    assessors:      [],
+    company: "",
+    location: "",
+    pocName: "",
+    pocEmail: "",
+    assessors: []
 };
 
 function loadState(): AppState {
@@ -41,11 +41,8 @@ export const appState = signal<AppState>(loadState());
 
 export const clearState = () => {
     appState.value = defaultState;
-}
+};
 
 effect(() => {
-    localStorage.setItem(
-        "assessment",
-        JSON.stringify(appState.value)
-    );
+    localStorage.setItem("assessment", JSON.stringify(appState.value));
 });
