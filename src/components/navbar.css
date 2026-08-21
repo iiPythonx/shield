@@ -1,28 +1,47 @@
-aside li:not(.navbar-section) {
+.list {
+    overflow-y: scroll;
+    scrollbar-width: thin;
+}
+
+.list-item {
+    display: flex;
+    align-items: center;
     cursor: pointer;
-    white-space: nowrap;
-    overflow-x: hidden;
-    text-overflow: ellipsis;
-
-    transition: border-color .1s ease;
-    border-bottom: 1px solid var(--background);
+    gap: 10px;
     
-    &:hover {
-        border-color: var(--foreground);
+    svg {
+        min-width: 15px;
+        max-width: 15px;
     }
+    
+    span {
+        white-space: nowrap;
+        overflow-x: hidden;
+        text-overflow: ellipsis;
 
-    &.selected {
-        font-weight: bold;
-        border-bottom: 1px solid var(--foreground);
+        transition: border-color .1s ease;
+        border-bottom: 1px solid var(--background);
+
+        &:hover {
+            border-color: var(--foreground);
+        }
     }
 }
 
-aside ul {
-    overflow-y: scroll;
-    scrollbar-width: thin;
-    padding-left: 20px;
+.list-item.selected span {
+    font-weight: bold;
+    border-color: var(--foreground);
 }
 
 aside {
     max-width: 300px;
+}
+
+svg {
+    fill: var(--foreground);
+    opacity: 0;
+
+    &.active {
+        opacity: 1;
+    }
 }
